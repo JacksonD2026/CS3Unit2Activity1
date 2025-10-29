@@ -22,3 +22,16 @@ print(movies_by_runtime.loc[10:180])
 df_highly_voted = df[df.vote_count > 20]
 df_high_rated = df_highly_voted[df_highly_voted.vote_average > 8]
 df_high_rated[['title', 'vote_average', 'vote_count']].head()
+
+runtime_lookup = pd.Series(df['title'].values, index=df['runtime'])
+runtime_lookup = runtime_lookup.sort_index()
+print(runtime_lookup)
+
+condition2 = (runtime_lookup.index > 10) & (runtime_lookup.index < 100)
+runtime_lookup = runtime_lookup[condition2]
+print(runtime_lookup)
+
+print(runtime_lookup.loc[40])
+print(runtime_lookup.loc[40].shape)
+
+print(runtime_lookup.iloc[100])
